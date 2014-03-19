@@ -18,6 +18,7 @@ public abstract class GenericSeeker<E> {
 	protected HttpRetriever httpRetriever = new HttpRetriever();
 
 	public abstract String retrieveSearchMethodPath();
+	public abstract String retrieveSearchLatestMovieMethodPath();
 	
 	protected String constructSearchUrl(String query) {
 		StringBuffer sb = new StringBuffer();
@@ -33,6 +34,15 @@ public abstract class GenericSeeker<E> {
 		sb.append(Imdb_BASE_URL);
 		sb.append(retrieveSearchMethodPath());
 		sb.append("/"+URLEncoder.encode(id));
+		sb.append(Imdb_API_KEY);
+		
+		return sb.toString();
+	}
+	
+	protected String constructLatestMovieUrl() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(Imdb_BASE_URL);
+		sb.append(retrieveSearchLatestMovieMethodPath());
 		sb.append(Imdb_API_KEY);
 		
 		return sb.toString();

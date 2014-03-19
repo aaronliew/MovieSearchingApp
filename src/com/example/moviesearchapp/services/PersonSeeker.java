@@ -18,13 +18,16 @@ public class PersonSeeker extends GenericSeeker<Person>{
 		String url = constructSearchUrl(query);
 		String response = httpRetriever.retrieve(url);
 		Person obj = gson.fromJson(response, Person.class);
-		//Log.d("aaron",obj.getResults().get(1).getPopularity().toString());
-		//Log.d(getClass().getSimpleName(), response);
 		return obj;
 	}
 
 	@Override
 	public String retrieveSearchMethodPath() {
 		return MOVIE_SEARCH_PATH;
+	}
+	
+	@Override
+	public String retrieveSearchLatestMovieMethodPath() {
+		return null;
 	}
 }

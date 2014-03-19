@@ -1,10 +1,15 @@
 
 package com.example.moviesearchapp.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Person{
-   	private Number page;
+public class Person implements Serializable{
+   	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3250591894818652711L;
+	private Number page;
    	private List<PersonResults> results;
    	private Number total_pages;
    	private Number total_results;

@@ -2,13 +2,17 @@ package com.example.moviesearchapp.services;
 
 import java.util.ArrayList;
 
+import android.util.Log;
+
 import com.example.moviesearchapp.model.ImdbMovie;
+import com.example.moviesearchapp.model.LatestMovie;
 import com.example.moviesearchapp.model.Movie;
 import com.google.gson.Gson;
 
 public class MovieSeeker extends GenericSeeker<Movie> {
 		
 	private static final String MOVIE_SEARCH_PATH = "movie";
+	private static final String LATEST_MOVIE_SEARCH_PATH = "movie/latest";
 	private ArrayList<ImdbMovie> list= new ArrayList<ImdbMovie>();
 	private Gson gson= new Gson();
 	
@@ -33,40 +37,22 @@ public class MovieSeeker extends GenericSeeker<Movie> {
 		}
 		return list;
 	}
-	
-	
-	
-	
-	
-	/*public ImdbMovie find(String query) {
-		ImdbMovie moviesList = retrieveMovieList(query);
-		return moviesList;
-	}
-	
-	public Movie findId(String query) {
-		Movie moviesId = retrieveIdList(query);
-		return moviesId;
-	}
-	
-	private Movie retrieveIdList(String query) {
-		String url = constructSearchUrl(query);
-		String response = httpRetriever.retrieve(url);
-		Movie obj = gson.fromJson(response, Movie.class);
-		return obj;
-		
-	}
-	
-	private ImdbMovie retrieveMovieList(String id) {
-		String url = constructImdbUrl(id);
-		String response = httpRetriever.retrieve(url);
-		ImdbMovie imdbData = gson.fromJson(response, ImdbMovie.class);
-		return imdbData;
-	}
-	*/
 
 	@Override
 	public String retrieveSearchMethodPath() {
 		return MOVIE_SEARCH_PATH;
+	}
+	
+	@Override
+	public String retrieveSearchLatestMovieMethodPath() {
+		return LATEST_MOVIE_SEARCH_PATH;
+	}
+
+	public LatestMovie findLatest() {
+		String url = constructLatestMovieUrl();
+		String response = httpRetriever.retrieve(url);
+		LatestMovie obj = gson.fromJson(response, LatestMovie.class);
+		return obj;
 	}
 
 

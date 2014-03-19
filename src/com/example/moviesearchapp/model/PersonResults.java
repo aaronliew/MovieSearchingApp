@@ -1,8 +1,14 @@
 
 package com.example.moviesearchapp.model;
 
-public class PersonResults{
-   	private boolean adult;
+import java.io.Serializable;
+
+public class PersonResults implements Serializable{
+   	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4642439977826647893L;
+	private boolean adult;
    	private Number id;
    	private String name;
    	private Number popularity;
